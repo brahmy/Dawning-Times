@@ -11,7 +11,7 @@ class NewsFeedHome extends StatefulWidget {
 }
 
 class NewsFeedHomeState extends State<NewsFeedHome> {
-  List wonders = [
+  /*List wonders = [
     NewsDataModel(
         id: 1,
         newsTitle: "Your news feed brahmy",
@@ -33,7 +33,7 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
   ];
   final String apiURL =
       'https://flutter-examples.000webhostapp.com/getFlowersList.php';
-
+*/
   /*Future<List<NewsDataModel>> fetchFlowers() async {
     var response = await http.get(apiURL);
 
