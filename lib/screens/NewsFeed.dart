@@ -30,7 +30,7 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
         newsImageURL:
             "https://d36tnp772eyphs.cloudfront.net/blogs/1/2018/02/Taj-Mahal.jpg",
         image: Icons.fiber_new),
-  ];
+  ];*/
   final String apiURL =
       'https://flutter-examples.000webhostapp.com/getFlowersList.php';
 */

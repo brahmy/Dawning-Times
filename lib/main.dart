@@ -1,5 +1,6 @@
-import 'package:dawning_times/screens/HomeMainTabs.dart';
+
 import 'package:dawning_times/screens/HomeScreen.dart';
+import 'package:dawning_times/screens/auth/signin.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomeMainTabs(),
+      home: SignIn(),
         initialRoute: '/',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
