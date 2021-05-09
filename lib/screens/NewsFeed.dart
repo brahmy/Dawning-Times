@@ -1,7 +1,10 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dawning_times/model/NewsDataModel.dart';
 import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/widgets/NewsFeedCard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -33,6 +36,7 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
   ];*/
   final String apiURL =
       'https://flutter-examples.000webhostapp.com/getFlowersList.php';
+
   /*Future<List<NewsDataModel>> fetchFlowers() async {
     var response = await http.get(apiURL);
 
@@ -80,8 +84,8 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
         );
 */
     return Container(
-      child: _myListView(context),
-    );
+        child:_myListView(context),
+      );
     // getNewsFeed(wonders);
     /*ListView(
           children: snapshot.data
@@ -140,30 +144,207 @@ Widget _myListView(BuildContext context) {
     Icons.directions_walk
   ];
 
-  return ListView.builder(
+  return ListView.separated(
     itemCount: titles.length,
-    itemBuilder: (context, index) {
-      return Container(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          height: MediaQuery.of(context).size.height*0.12,
-          width: double.maxFinite,
-          child: SizedBox(
-              child: Card(
-                elevation: 5,
-                child: ListTile(
-                  leading: Container(
-                    height: MediaQuery.of(context).size.height*0.12,
-                    child: Image.asset('assets/image1.png',height: MediaQuery.of(context).size.height*0.12),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.circular(10.0)
-                    ),
-                  ),
-                  title: Text(titles[index]),
-                ),
-              )
-          )
+    separatorBuilder: (context, index) {
+      return Divider(
+        color: Color(0xFF000000),
       );
+    },
+    itemBuilder: (context, index) {
+      return listItems(context, index, titles);
     },
   );
 }
+
+Widget listItems(BuildContext context, int index, List<String> titles) {
+  return Container(
+      padding: EdgeInsets.fromLTRB(1, 1, 1, 1),
+      height: MediaQuery.of(context).size.height * 0.1,
+      width: double.maxFinite,
+      child:
+          /*ListTile(
+        leading: Container(
+          height: MediaQuery.of(context).size.height * 0.12,
+          child: Image.asset('assets/image1.png',
+              height: MediaQuery.of(context).size.height * 0.12),
+          decoration: BoxDecoration(
+              color: Color(0xFFFFFFFF),
+              borderRadius: BorderRadius.circular(10.0)),
+        ),
+        title: Text(titles[index]),
+        subtitle: Container(
+            child: Row(
+              children: [
+                Icon(Icons.language),
+                SizedBox(width: 5.0),
+                Text('Dawning Times')
+              ],
+            )), //
+      )*/
+          Column(
+        children: [
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    child: Image.asset('assets/image1.png',
+                        height: MediaQuery.of(context).size.height * 0.1),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(10.0)),
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        titles[index],
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Container(
+                          child: Row(
+                        children: [
+                          Icon(Icons.language),
+                          SizedBox(width: 5.0),
+                          Text('Dawning Times')
+                        ],
+                      )),
+                      SizedBox(height: 5.0),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.timer),
+                              SizedBox(width: 2.0),
+                              Text(
+                                "2 hours ago",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 10.0),
+                          Row(
+                            children: [
+                              Icon(Icons.remove_red_eye_outlined),
+                              SizedBox(width: 2.0),
+                              Text(
+                                "001 view",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.save),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.share),
+                            ],
+                          )
+                        ],
+                      ))
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ));
+}
+
+Widget _bannerImageSlider(BuildContext context) {
+  return ListView(
+    children: [
+      CarouselSlider(
+        items: [
+          //1st Image of Slider
+          Container(
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              image: DecorationImage(
+                image: AssetImage('assets/image1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          //2nd Image of Slider
+          Container(
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              image: DecorationImage(
+                image: AssetImage('assets/image1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          //3rd Image of Slider
+          Container(
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              image: DecorationImage(
+                image: AssetImage('assets/image1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          //4th Image of Slider
+          Container(
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              image: DecorationImage(
+                image: AssetImage('assets/image1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          //5th Image of Slider
+          Container(
+            margin: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              image: DecorationImage(
+                image: AssetImage('assets/image1.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+        //Slider Container properties
+        options: CarouselOptions(
+          height: 180.0,
+          enlargeCenterPage: true,
+          autoPlay: true,
+          aspectRatio: 16 / 9,
+          autoPlayCurve: Curves.fastOutSlowIn,
+          enableInfiniteScroll: true,
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          viewportFraction: 0.8,
+        ),
+      ),
+    ],
+  );
+}
+

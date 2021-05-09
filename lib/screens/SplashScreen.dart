@@ -1,3 +1,4 @@
+import 'package:dawning_times/screens/ChooseLanguge.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import './auth/signin.dart';
@@ -19,7 +20,7 @@ class SplashScreenState extends State<SplashScreen>{
             ()=>Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
-                    SignIn()
+                    ChooseLanguage()
             )
         )
     );
