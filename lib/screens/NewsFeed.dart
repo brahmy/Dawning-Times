@@ -33,7 +33,6 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
   ];*/
   final String apiURL =
       'https://flutter-examples.000webhostapp.com/getFlowersList.php';
-*/
   /*Future<List<NewsDataModel>> fetchFlowers() async {
     var response = await http.get(apiURL);
 

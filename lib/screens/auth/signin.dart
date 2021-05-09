@@ -12,9 +12,10 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
-      body: SingleChildScrollView(
+      body: Center(
+        child:SingleChildScrollView(
         child: Container(
+          alignment: Alignment.center,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -76,6 +77,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
         ),
+      ),
       ),
     );
   }
