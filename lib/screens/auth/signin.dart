@@ -1,4 +1,5 @@
 import 'package:dawning_times/screens/HomeMainTabs.dart';
+import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:dawning_times/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,8 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Dawning Times"),
-      ),
+      backgroundColor: Colors.grey[350],
+
       body: Center(
         child:SingleChildScrollView(
         child: Container(
@@ -26,55 +24,166 @@ class _SignInState extends State<SignIn> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(1.0, 75,1.0,75),
+                    child: Center(
+                      child: Text('Company LOGO'),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0,1.0,1.0,1.0),
+                    child: Center(
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 200.0, 10.0, 10.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
+                  padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                  child:  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius:  BorderRadius.circular(12),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(fontSize: 17),
+                        icon: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Icon(Icons.mail_outline),
+                        ),
+                        hintText: 'Enter Email',
                         border: InputBorder.none,
-                        filled: true,
-                        fillColor: Colors.grey[300],
-                        focusColor: Colors.grey[300],
-                        labelText: 'Enter Email',
-                        contentPadding: new EdgeInsets.symmetric(vertical: 15.0, horizontal:30.0 ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0)
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20.0,),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                  child:  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius:  BorderRadius.circular(12),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(fontSize: 17),
+                        icon: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Icon(Icons.lock_outline),
+                        ),
+                        hintText: 'Enter PIN',
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left:200),
+                  child: FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20.0,),
+                ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 320,height: 45),
+                  child: ElevatedButton(
+                    child: Text(
+                      'Log In',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NewsFeedHome()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)
                         )
                     ),
                   ),
                 ),
                 SizedBox(height: 10.0,),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: Colors.grey[300],
-                        focusColor: Colors.grey[300],
-                        labelText: 'Enter PIN',
-                        contentPadding: new EdgeInsets.symmetric(vertical: 15.0, horizontal:30.0 ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0)
-                        )
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20.0,),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeMainTabs()));
-                  },
-                  child: Text('SignIn'),
-                ),
-                SizedBox(height: 50.0,),
                 FlatButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) =>SignUp()));
                   },
                   child: Text(
-                    'Not a Member? SignUp',
+                    "Don't have an account? SignUp",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15,),
+                ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  child: ElevatedButton(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            'Continue With Google',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)
+                        )
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  child: ElevatedButton(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            'Continue With Facebook',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blueAccent,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)
+                        )
                     ),
                   ),
                 ),
