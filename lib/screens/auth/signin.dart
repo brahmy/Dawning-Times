@@ -129,7 +129,7 @@ class _SignInState extends State<SignIn> {
                   child: Text(
                     "Don't have an account? SignUp",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black54,
                     ),
                   ),
                 ),
