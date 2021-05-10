@@ -1,5 +1,4 @@
 import 'package:dawning_times/screens/HomeMainTabs.dart';
-import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:dawning_times/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -113,7 +112,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => NewsFeedHome()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeMainTabs()));
                     },
                     style: ElevatedButton.styleFrom(
                         shape: new RoundedRectangleBorder(
