@@ -228,6 +228,7 @@ Widget listItems(BuildContext context, int index, List<String> titles) {
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: <Widget>[
                   Expanded(
                     flex: 1,
