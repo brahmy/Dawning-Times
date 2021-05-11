@@ -5,6 +5,7 @@ import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/widgets/NewsFeedCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -73,21 +74,30 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
     );
   }
 */
-  @override
+  /* @override
   Widget build(BuildContext context) {
-    /* return FutureBuilder<List<NewsDataModel>>(
+    */ /* return FutureBuilder<List<NewsDataModel>>(
       future: fetchFlowers(),
       builder: (context, snapshot) {
 
         if (!snapshot.hasData) return Center(
             child: CircularProgressIndicator()
         );
-*/
-    return Container(
-        child:_myListView(context),
-      );
+*/ /*
+    return Column(
+      children: [
+        Container(
+          child: imageSlider(context),
+        ),
+        Container(
+          child:_myListView(context),
+        ),
+
+      ],
+
+    );
     // getNewsFeed(wonders);
-    /*ListView(
+    */ /*ListView(
           children: snapshot.data
               .map((data) => Column(children: <Widget>[
             GestureDetector(
@@ -113,12 +123,37 @@ class NewsFeedHomeState extends State<NewsFeedHome> {
 
           ],))
               .toList(),
-        );*/
+        );*/ /*
     // },
     // );
   }
+}*/
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(1.0, 1.0, 1.0, 1.0),
+                child: Container(
+                  constraints: BoxConstraints.expand(
+                    height: 150,
+                  ),
+                  child: imageSlider(context),
+                ),
+              ),
+              SizedBox(height: 1.0,),
+              Container(
+                child: _myListView(context),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
-
 Widget _myListView(BuildContext context) {
   final titles = [
     'Your news feed brahmy seems we have statred the  app',
@@ -145,6 +180,10 @@ Widget _myListView(BuildContext context) {
   ];
 
   return ListView.separated(
+    scrollDirection: Axis.vertical,
+    shrinkWrap: true,
+    physics: ScrollPhysics(),
+    padding: EdgeInsets.all(0),
     itemCount: titles.length,
     separatorBuilder: (context, index) {
       return Divider(
@@ -182,89 +221,97 @@ Widget listItems(BuildContext context, int index, List<String> titles) {
               ],
             )), //
       )*/
-          Column(
+          Padding(
+            padding: const EdgeInsets.all(0),
+            child: Column(
         children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    child: Image.asset('assets/image1.png',
-                        height: MediaQuery.of(context).size.height * 0.1),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.circular(10.0)),
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Image.asset('assets/image1.png',
+                          height: MediaQuery.of(context).size.height * 0.1),
+                      decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
                   ),
-                ),
-                SizedBox(width: 10.0),
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        titles[index],
-                        style: TextStyle(fontSize: 16),
+                  SizedBox(width: 10.0),
+                  Expanded(
+                    flex:2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            titles[index],
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Container(
+                              child: Row(
+                            children: [
+                              Icon(Icons.language),
+                              SizedBox(width: 5.0),
+                              Text('Dawning Times')
+                            ],
+                          )),
+                          SizedBox(height: 5.0),
+                          Expanded(
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                children: [
+
+                                  Icon(Icons.timer),
+                                  SizedBox(width: 2.0),
+                                  Text(
+                                    "2 hours ago",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10.0),
+                              Row(
+                                children: [
+                                  Icon(Icons.remove_red_eye_outlined),
+                                  SizedBox(width: 2.0),
+                                  Text(
+                                    "001 view",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(Icons.save),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(Icons.share),
+                                ],
+                              )
+                            ],
+                          ))
+                        ],
                       ),
-                      Container(
-                          child: Row(
-                        children: [
-                          Icon(Icons.language),
-                          SizedBox(width: 5.0),
-                          Text('Dawning Times')
-                        ],
-                      )),
-                      SizedBox(height: 5.0),
-                      Expanded(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.timer),
-                              SizedBox(width: 2.0),
-                              Text(
-                                "2 hours ago",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 10.0),
-                          Row(
-                            children: [
-                              Icon(Icons.remove_red_eye_outlined),
-                              SizedBox(width: 2.0),
-                              Text(
-                                "001 view",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.save),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.share),
-                            ],
-                          )
-                        ],
-                      ))
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
         ],
-      ));
+      ),
+          )
+  );
 }
 
 Widget _bannerImageSlider(BuildContext context) {
@@ -348,3 +395,16 @@ Widget _bannerImageSlider(BuildContext context) {
   );
 }
 
+Swiper imageSlider(context) {
+  var images = ['assets/image1.png', 'assets/image1.png', 'assets/image1.png','assets/image1.png'];
+  return new Swiper(
+    autoplay: false,
+
+    itemBuilder: (BuildContext context, int index){
+      return new Image.asset(images[index]);
+    },
+    itemCount: images.length,
+    viewportFraction: 0.8,
+    scale: 0.9,
+  );
+}
