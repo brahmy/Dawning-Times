@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+
 import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +63,9 @@ class HomeMainTabs extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             tooltip: 'Increment',
             child: Icon(Icons.add),
+            onPressed: () {
+              NewsFeedHome();
+            },
           )),
     ));
   }
