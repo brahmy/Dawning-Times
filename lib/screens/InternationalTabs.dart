@@ -72,12 +72,15 @@ Widget _card(BuildContext context){
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Dawning Times',
+                          'Dawning Times And times ',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: Colors.black87
                           ),
+                          overflow: TextOverflow.clip,
+                          maxLines: 1,
+                          softWrap: true,
                         ),
                         SizedBox(height: 5,),
                         Text(
