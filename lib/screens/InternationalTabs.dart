@@ -1,5 +1,6 @@
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class CardList extends StatefulWidget {
   const CardList({Key key}) : super(key: key);
@@ -38,6 +39,23 @@ class _CardListState extends State<CardList> {
     );
 
   }
+}
+/// card Image sliders
+int _currentIndex =0;
+List cardList = [
+  Image1(),
+  Image2(),
+  Image3(),
+  Image4(),
+];
+List<T> map<T>(List list, Function handler) {
+  List<T> result = [];
+  for(var i=0; i<list.length;i++){
+    result.add(handler(i, list[i]));
+  }
+  return result;
+}
+void setState(Null Function() param0) {
 }
 @override
 Widget _card(BuildContext context){
@@ -110,12 +128,41 @@ Widget _card(BuildContext context){
           Divider(
             color: Colors.black38,
           ),
-          new Image.network(
-            /// Image Calling
-            'https://images.unsplash.com/photo-1523215108660-3fdf7932d7a5?ixid='
-                'MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufD'
-                'B8fHx8&ixlib=rb-1.2.1&auto=forma'
-                't&fit=crop&w=1045&q=80',
+          /// Adding image sliders
+          new Container(
+            child: Column(
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 200.0,
+                    autoPlay: false,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    pauseAutoPlayOnTouch: true,
+                    aspectRatio: 2.0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                  items: cardList.map((card){
+                    return Builder(
+                        builder:(BuildContext context){
+                          return Container(
+                            height: MediaQuery.of(context).size.height*0.30,
+                            width: MediaQuery.of(context).size.width,
+                            child: Card(
+                              child: card,
+                            ),
+                          );
+                        }
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
           ),
           Divider(
             color: Colors.black38,
@@ -227,6 +274,57 @@ Widget _card(BuildContext context){
     ),
   );
 }
+
+
+class Image1 extends StatelessWidget {
+  const Image1({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
+          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
+          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
+    );
+  }
+}
+class Image2 extends StatelessWidget {
+  const Image2({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
+          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
+          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
+    );
+  }
+}
+class Image3 extends StatelessWidget {
+  const Image3({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
+          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
+          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
+    );
+  }
+}
+class Image4 extends StatelessWidget{
+  const Image4({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
+          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
+          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
+    );
+  }
+}
+
 
 
 
