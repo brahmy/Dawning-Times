@@ -1,3 +1,4 @@
+import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -48,13 +49,13 @@ List cardList = [
   Image3(),
   Image4(),
 ];
-List<T> map<T>(List list, Function handler) {
+/*List<T> map<T>(List list, Function handler) {
   List<T> result = [];
   for(var i=0; i<list.length;i++){
     result.add(handler(i, list[i]));
   }
   return result;
-}
+}*/
 void setState(Null Function() param0) {
 }
 @override
@@ -130,39 +131,7 @@ Widget _card(BuildContext context){
           ),
           /// Adding image sliders
           new Container(
-            child: Column(
-              children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 200.0,
-                    autoPlay: false,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    pauseAutoPlayOnTouch: true,
-                    aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                  ),
-                  items: cardList.map((card){
-                    return Builder(
-                        builder:(BuildContext context){
-                          return Container(
-                            height: MediaQuery.of(context).size.height*0.30,
-                            width: MediaQuery.of(context).size.width,
-                            child: Card(
-                              child: card,
-                            ),
-                          );
-                        }
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
+            child: cardImageSlider(context),
           ),
           Divider(
             color: Colors.black38,
@@ -274,7 +243,60 @@ Widget _card(BuildContext context){
     ),
   );
 }
-
+Widget cardImageSlider(BuildContext context) {
+  return Container(
+    child: Column(
+      children: [
+        CarouselSlider(
+          options: CarouselOptions(
+            height: 200.0,
+            autoPlay: false,
+            autoPlayInterval: Duration(seconds: 3),
+            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            pauseAutoPlayOnTouch: true,
+            aspectRatio: 2.0,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+          items: cardList.map((card){
+            return Builder(
+                builder:(BuildContext context){
+                  return Container(
+                    height: MediaQuery.of(context).size.height*0.30,
+                    width: MediaQuery.of(context).size.width,
+                    child: Card(
+                      child: card,
+                    ),
+                  );
+                }
+            );
+          }).toList(),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: cardList.map((urlOfItem) {
+            int index = cardList.indexOf(urlOfItem);
+            return Container(
+              width: 10.0,
+              height: 10.0,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _currentIndex == index
+                    ? Color.fromRGBO(0, 0, 0, 0.8)
+                    : Color.fromRGBO(0, 0, 0, 0.3),
+              ),
+            );
+          }).toList(),
+        )
+      ],
+    ),
+  );
+}
 
 class Image1 extends StatelessWidget {
   const Image1({Key key}) : super(key: key);
@@ -282,9 +304,27 @@ class Image1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
-          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
-          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
+      child: Stack(
+        children: [
+          Container(
+            child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
+                '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
+                'rb-1.2.1&auto=format&fit=crop&w=1051&q=80',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+                'Text Message',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
