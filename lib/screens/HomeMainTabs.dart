@@ -1,10 +1,7 @@
 import 'dart:ffi';
-
-
 import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:flutter/material.dart';
-
 import 'InternationalTabs.dart';
 
 class HomeMainTabs extends StatelessWidget {
