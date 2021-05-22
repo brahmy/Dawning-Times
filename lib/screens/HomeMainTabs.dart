@@ -5,6 +5,8 @@ import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:flutter/material.dart';
 
+import 'InternationalTabs.dart';
+
 class HomeMainTabs extends StatelessWidget {
   bool _pinned = true;
   bool _snap = false;
@@ -51,7 +53,7 @@ class HomeMainTabs extends StatelessWidget {
               children: <Widget>[
                 NewsFeedHome(),
                 HomeNewsFeedList(),
-                Icon(Icons.directions_car, size: 350),
+                CardList(),
                 Icon(Icons.directions_bike, size: 350),
                 Icon(Icons.directions_boat, size: 350),
                 Icon(Icons.directions_boat, size: 350),
