@@ -49,13 +49,13 @@ List cardList = [
   Image3(),
   Image4(),
 ];
-/*List<T> map<T>(List list, Function handler) {
+List<T> map<T>(List list, Function handler) {
   List<T> result = [];
   for(var i=0; i<list.length;i++){
     result.add(handler(i, list[i]));
   }
   return result;
-}*/
+}
 void setState(Null Function() param0) {
 }
 @override
@@ -366,49 +366,3 @@ class Image4 extends StatelessWidget{
 }
 
 
-
-
-/*
-class CustomCard extends StatelessWidget {
-  const CustomCard({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-      child: new Column(
-        children: [
-          new Image.asset("assets/Image1.png"),
-          new Text(
-            'Something',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          new Text(
-            'Description',
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          new Padding(
-            padding: new EdgeInsets.all(7.0),
-            child: new Row(
-              children: [
-                new Padding(
-                  padding: new EdgeInsets.all(7.0),
-                  child: new Icon(Icons.thumb_up),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.all(7.0),
-                  child: new Icon(Icons.comment),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-*/
