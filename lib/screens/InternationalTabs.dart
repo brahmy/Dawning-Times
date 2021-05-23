@@ -12,11 +12,13 @@ class CardList extends StatefulWidget {
 
 class _CardListState extends State<CardList> {
   int _itemCount = 0;
+
   void _incrementCounter() {
     setState(() {
       _itemCount++;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     Widget allcards;
@@ -40,6 +42,7 @@ class _CardListState extends State<CardList> {
     ));
   }
 }
+
 /// card Image sliders
 int _currentIndex = 0;
 List cardList = [
@@ -48,15 +51,17 @@ List cardList = [
   Image3(),
   Image4(),
 ];
+
 List<T> map<T>(List list, Function handler) {
   List<T> result = [];
-  for(var i=0; i<list.length;i++){
+  for (var i = 0; i < list.length; i++) {
     result.add(handler(i, list[i]));
   }
   return result;
 }
-void setState(Null Function() param0) {
-}
+
+void setState(Null Function() param0) {}
+
 @override
 Widget _card(BuildContext context) {
   return new Card(
@@ -130,6 +135,7 @@ Widget _card(BuildContext context) {
           Divider(
             color: Colors.black38,
           ),
+
           /// Adding image sliders
           new Container(
             child: cardImageSlider(context),
@@ -203,7 +209,6 @@ Widget _card(BuildContext context) {
                       ],
                     ),
                   ),
-
                   Container(
                     child: Row(
                       children: [
@@ -373,5 +378,3 @@ class Image4 extends StatelessWidget {
     );
   }
 }
-
-
