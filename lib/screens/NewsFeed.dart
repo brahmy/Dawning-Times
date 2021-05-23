@@ -15,119 +15,8 @@ class NewsFeedHome extends StatefulWidget {
 }
 
 class NewsFeedHomeState extends State<NewsFeedHome> {
-  /*List wonders = [
-    NewsDataModel(
-        id: 1,
-        newsTitle: "Your news feed brahmy",
-        newsImageURL:
-            "https://d36tnp772eyphs.cloudfront.net/blogs/1/2018/02/Taj-Mahal.jpg",
-        image: Icons.fiber_new),
-    NewsDataModel(
-        id: 2,
-        newsTitle: "Your news feed brahmy",
-        newsImageURL:
-            "https://d36tnp772eyphs.cloudfront.net/blogs/1/2018/02/Taj-Mahal.jpg",
-        image: Icons.fiber_new),
-    NewsDataModel(
-        id: 3,
-        newsTitle: "Your news feed brahmy",
-        newsImageURL:
-            "https://d36tnp772eyphs.cloudfront.net/blogs/1/2018/02/Taj-Mahal.jpg",
-        image: Icons.fiber_new),
-  ];*/
-  final String apiURL =
-      'https://flutter-examples.000webhostapp.com/getFlowersList.php';
+  final String apiURL = 'https://flutter-examples.000webhostapp.com/getFlowersList.php';
 
-  /*Future<List<NewsDataModel>> fetchFlowers() async {
-    var response = await http.get(apiURL);
-
-    if (200 == 200) {
-      final items = json.decode(response.body).cast<Map<String, dynamic>>();
-
-      List<NewsDataModel> listOfFruits = items.map<NewsDataModel>((json) {
-        return NewsDataModel.fromJson(json);
-      }).toList();
-
-      return listOfFruits;
-    }
-    else {
-      throw Exception('Failed to load data from Server.');
-    }
-  }
-
-  selectedItem(BuildContext context, String holder) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text(holder),
-          actions: <Widget>[
-            FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-*/
-  /* @override
-  Widget build(BuildContext context) {
-    */ /* return FutureBuilder<List<NewsDataModel>>(
-      future: fetchFlowers(),
-      builder: (context, snapshot) {
-
-        if (!snapshot.hasData) return Center(
-            child: CircularProgressIndicator()
-        );
-*/ /*
-    return Column(
-      children: [
-        Container(
-          child: imageSlider(context),
-        ),
-        Container(
-          child:_myListView(context),
-        ),
-
-      ],
-
-    );
-    // getNewsFeed(wonders);
-    */ /*ListView(
-          children: snapshot.data
-              .map((data) => Column(children: <Widget>[
-            GestureDetector(
-              onTap: (){selectedItem(context, data.newsTitle);},
-              child: Row(
-                  children: [
-                    Container(
-                        width: 200,
-                        height: 100,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child:
-                            Image.network(data.newsImageURL,
-                              width: 200, height: 100, fit: BoxFit.cover,))),
-
-                    Flexible(child:
-                    Text(data.newsTitle,
-                        style: TextStyle(fontSize: 18)))
-                  ]),),
-
-            Divider(color: Colors.black),
-
-          ],))
-              .toList(),
-        );*/ /*
-    // },
-    // );
-  }
-}*/
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -202,25 +91,6 @@ Widget listItems(BuildContext context, int index, List<String> titles) {
       height: MediaQuery.of(context).size.height * 0.1,
       width: double.maxFinite,
       child:
-          /*ListTile(
-        leading: Container(
-          height: MediaQuery.of(context).size.height * 0.12,
-          child: Image.asset('assets/image1.png',
-              height: MediaQuery.of(context).size.height * 0.12),
-          decoration: BoxDecoration(
-              color: Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(10.0)),
-        ),
-        title: Text(titles[index]),
-        subtitle: Container(
-            child: Row(
-              children: [
-                Icon(Icons.language),
-                SizedBox(width: 5.0),
-                Text('Dawning Times')
-              ],
-            )), //
-      )*/
           Padding(
             padding: const EdgeInsets.all(0),
             child: Column(
@@ -298,6 +168,7 @@ Widget listItems(BuildContext context, int index, List<String> titles) {
                               Row(
                                 children: [
                                   Icon(Icons.share),
+
                                 ],
                               )
                             ],
