@@ -2,6 +2,7 @@ import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardList extends StatefulWidget {
   const CardList({Key key}) : super(key: key);
@@ -21,28 +22,69 @@ class _CardListState extends State<CardList> {
 
   @override
   Widget build(BuildContext context) {
-    Widget allcards;
     return new Scaffold(
-        body: new Container(
-      child: SingleChildScrollView(
-        child: new Column(
-          children: <Widget>[
-            _card(context),
-            SizedBox(
-              height: 5,
-            ),
-            _card(context),
-            SizedBox(
-              height: 5,
-            ),
-            _card(context),
-          ],
-        ),
-      ),
-    ));
+        body: SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: new Column(
+            children: <Widget>[
+              Container(
+                  child: _mainSlider(context),
+                constraints: BoxConstraints.expand(
+                  height: 150,
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Container(child: _card(context)),
+              SizedBox(
+                height: 5,
+              ),
+              Container(child: _card(context)),
+              SizedBox(
+                height: 5,
+              ),
+              Container(child: _card(context)),
+            ],
+          ),
+        ));
   }
 }
-
+/// main Image Slider
+Widget _mainSlider(BuildContext context){
+  var images = [
+    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGZhc2hpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+     'https://picsum.photos/200/300?grayscale',
+    'https://picsum.photos/200/300/?blur',
+    'https://picsum.photos/200/300.jpg',
+  ];
+  return new Swiper(
+    autoplay: false,
+    itemBuilder: (BuildContext context, int index){
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          new Image.network(
+            images[index],
+            fit: BoxFit.fill,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: Text(
+                'Text On the Image',
+              style: TextStyle(
+                fontSize: 18
+              ),
+            ),
+          )
+        ],
+      );
+    },
+    itemCount: images.length,
+    viewportFraction: 0.8,
+    scale: 0.9,
+  );
+}
 /// card Image sliders
 int _currentIndex = 0;
 List cardList = [
