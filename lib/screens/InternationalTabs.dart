@@ -1,7 +1,9 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:dawning_times/screens/NewsDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardList extends StatefulWidget {
@@ -30,7 +32,7 @@ class _CardListState extends State<CardList> {
               Container(
                   child: _mainSlider(context),
                 constraints: BoxConstraints.expand(
-                  height: 150,
+                  height: 180,
                 ),
               ),
               SizedBox(
@@ -64,9 +66,11 @@ Widget _mainSlider(BuildContext context){
       return Stack(
         alignment: Alignment.center,
         children: [
-          new Image.network(
-            images[index],
-            fit: BoxFit.fill,
+          GestureDetector(
+            child: new Image.network(
+              images[index],
+              fit: BoxFit.fill,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 100),
@@ -85,25 +89,6 @@ Widget _mainSlider(BuildContext context){
     scale: 0.9,
   );
 }
-/// card Image sliders
-int _currentIndex = 0;
-List cardList = [
-  Image1(),
-  Image2(),
-  Image3(),
-  Image4(),
-];
-
-List<T> map<T>(List list, Function handler) {
-  List<T> result = [];
-  for (var i = 0; i < list.length; i++) {
-    result.add(handler(i, list[i]));
-  }
-  return result;
-}
-
-void setState(Null Function() param0) {}
-
 @override
 Widget _card(BuildContext context) {
   return new Card(
@@ -154,7 +139,8 @@ Widget _card(BuildContext context) {
                               'Posted 1 day ago',
                               style: TextStyle(
                                   fontSize: 12, color: Colors.black54),
-                            )),
+                            )
+                        ),
                       ],
                     ),
                   ),
@@ -177,11 +163,7 @@ Widget _card(BuildContext context) {
           Divider(
             color: Colors.black38,
           ),
-
-          /// Adding image sliders
-          new Container(
-            child: cardImageSlider(context),
-          ),
+          _cardImageSlider(context),
           Divider(
             color: Colors.black38,
           ),
@@ -195,6 +177,7 @@ Widget _card(BuildContext context) {
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   fontSize: 20,
+
                 ),
               ),
             ),
@@ -287,136 +270,43 @@ Widget _card(BuildContext context) {
     ),
   );
 }
-
-Widget cardImageSlider(BuildContext context) {
-  return Container(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            height: 200.0,
-            autoPlay: false,
-            autoPlayInterval: Duration(seconds: 3),
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            pauseAutoPlayOnTouch: true,
-            aspectRatio: 2.0,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-          ),
-          items: cardList.map((card) {
-            return Builder(builder: (BuildContext context) {
-              return Container(
-                height: MediaQuery.of(context).size.height * 0.30,
-                width: MediaQuery.of(context).size.width,
-                child: Card(
-                  child: card,
-                ),
-              );
-            });
-          }).toList(),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: cardList.map((urlOfItem) {
-            int index = cardList.indexOf(urlOfItem);
-            return Container(
-              width: 10.0,
-              height: 10.0,
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _currentIndex == index
-                    ? Color.fromRGBO(0, 0, 0, 0.8)
-                    : Color.fromRGBO(0, 0, 0, 0.3),
-              ),
-            );
-          }).toList(),
-        )
-      ],
-    ),
-  );
-}
-
-class Image1 extends StatelessWidget {
-  const Image1({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
+/// card Image sliders
+Widget _cardImageSlider(BuildContext context){
+  return ListView(
+    shrinkWrap: true,
+    children: [
+      CarouselSlider(
+        items: [
+          //1st Image of Slider
           Container(
-            child: Image.network(
-              'https://www.gstatic.com/webp/gallery/3.jpg',
-              fit: BoxFit.fill,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(""
+                    "https://picsum.photos/536/354"),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Container(
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              'Description is implemented to display Text Message',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage("https://picsum.photos/536/354"),
+                fit: BoxFit.fill,
               ),
             ),
           ),
         ],
+        options: CarouselOptions(
+          height: 150.0,
+          enlargeCenterPage: true,
+          autoPlay: true,
+          autoPlayCurve: Curves.fastOutSlowIn,
+          enableInfiniteScroll: true,
+          autoPlayAnimationDuration: Duration(milliseconds: 800),
+          viewportFraction: 0.8,
+          scrollPhysics: ScrollPhysics(),
+        ),
       ),
-    );
-  }
-}
-
-class Image2 extends StatelessWidget {
-  const Image2({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      alignment: Alignment.center,
-      child: Image.network(
-        'https://www.gstatic.com/webp/gallery/1.jpg',
-        fit: BoxFit.fitWidth,
-      ),
-    );
-  }
-}
-
-class Image3 extends StatelessWidget {
-  const Image3({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      alignment: Alignment.center,
-      child: Image.network(
-        'https://images.unsplash.com/photo-1611095565995-d'
-        '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
-        'rb-1.2.1&auto=format&fit=crop&w=1051&q=80',
-        fit: BoxFit.fill,
-      ),
-    );
-  }
-}
-
-class Image4 extends StatelessWidget {
-  const Image4({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      alignment: Alignment.center,
-      child: Image.network('https://images.unsplash.com/photo-1611095565995-d'
-          '09bbf618f6d?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib='
-          'rb-1.2.1&auto=format&fit=crop&w=1051&q=80'),
-    );
-  }
+    ],
+  );
 }
