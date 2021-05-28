@@ -135,12 +135,12 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: 15,),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  constraints: BoxConstraints.tightFor(width: 320,height: 47),
                   child: ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 15),
                           child: Text(
                             'Continue With Google',
                             style: TextStyle(
@@ -162,12 +162,12 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: 10,),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  constraints: BoxConstraints.tightFor(width: 320,height: 47),
                   child: ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 15),
                           child: Text(
                             'Continue With Facebook',
                             style: TextStyle(

@@ -243,12 +243,12 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  constraints: BoxConstraints.tightFor(width: 320,height: 47),
                   child: ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: Text(
                             'Get Location',
                             style: TextStyle(
@@ -272,12 +272,12 @@ class _SignUpState extends State<SignUp> {
                 ),
                 SizedBox(height: 15,),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 320,height: 40),
+                  constraints: BoxConstraints.tightFor(width: 320,height: 47),
                   child: ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: Text(
                             'Select Picture',
                             style: TextStyle(
@@ -299,14 +299,14 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                SizedBox(height: 35,),
+                SizedBox(height: 20,),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 250,height: 40),
+                  constraints: BoxConstraints.tightFor(width: 325,height: 47),
                   child: ElevatedButton(
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: Text(
                             'SignUp',
                             style: TextStyle(
