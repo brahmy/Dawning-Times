@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/screens/NewsFeed.dart';
+import 'package:dawning_times/screens/NewsPost.dart';
 import 'package:flutter/material.dart';
 
 import 'InternationalTabs.dart';
@@ -66,7 +67,7 @@ class HomeMainTabs extends StatelessWidget {
             tooltip: 'Increment',
             child: Icon(Icons.add),
             onPressed: () {
-              NewsFeedHome();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NewsPost()));
             },
           )),
     ));
