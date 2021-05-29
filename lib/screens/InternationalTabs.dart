@@ -38,7 +38,14 @@ class _CardListState extends State<CardList> {
               SizedBox(
                 height: 5,
               ),
-              Container(child: _card(context)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewsDetails()),
+                  );
+                },
+                child: Container(child: _card(context)),),
               SizedBox(
                 height: 5,
               ),

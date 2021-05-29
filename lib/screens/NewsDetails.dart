@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class NewsDetails extends StatefulWidget {
-  const NewsDetails({Key key}) : super(key: key);
-
   @override
-  _NewsDetailsState createState() => _NewsDetailsState();
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _NewsDetailsState();
+  }
 }
 
-class _NewsDetailsState extends State<NewsDetails> {
+
+  class _NewsDetailsState extends State<NewsDetails> {
   @override
 
   Widget build(BuildContext context) {
