@@ -1,8 +1,5 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dawning_times/model/NewsDataModel.dart';
-import 'package:dawning_times/screens/HomeNewsFeed.dart';
-import 'package:dawning_times/widgets/NewsFeedCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';

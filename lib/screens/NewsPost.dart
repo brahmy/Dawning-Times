@@ -3,18 +3,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class NewsPost extends StatefulWidget{
+class NewsPost extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return NewsPostState();
   }
-
 }
 
-class NewsPostState extends State<NewsPost>{
+class NewsPostState extends State<NewsPost> {
   final maxLines = 100;
   File _image;
+  List<File> images = List<File>();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,74 +25,125 @@ class NewsPostState extends State<NewsPost>{
           // the App.build method, and use it to set our appbar title.
           title: Text("Dawning Times"),
         ),
-    body:SingleChildScrollView(
-        child: new Column(
-        children: <Widget>[
+        body: SingleChildScrollView(
+            child: new Column(children: <Widget>[
           _buildNewsHeadLine(),
-        Row(
-            children: <Widget>[
-              _imageUpload(),
-              _imageUpload(),
-            ]
-        ),
+          Row(children: <Widget>[
+            _imageUpload(),
+/*
+        Expanded(
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemBuilder: (BuildContext ctx, int index) {
+                return Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Card(
+                    elevation: 2,
+                    color: Colors.black,
+                    child: Column(
+                      children: <Widget>[
+                        Image.file(
+                          images[index],
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.fill,
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+              itemCount: images.length,
+            ),
+        )
+*/
+            Expanded(
+              child:Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              height: MediaQuery.of(context).size.height * 0.13,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: images.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                        child: Container(
+                          child: Center(
+                            child: Card(
+                            elevation: 2,
+                            color: Colors.grey,
+                            child: Column(
+                              children: <Widget>[
+                                Image.file(
+                                  images[index],
+                                  width: 120,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                )
+                              ],
+                          )),
+                        ),
+                      ),
+                    );
+                  }),
+            )
+            )
+          ]),
           _buildNewsFeed(),
           _submitButton(),
-        ]))
-    );
+        ])));
   }
 
-  Widget _buildNewsHeadLine(){
+  Widget _buildNewsHeadLine() {
     return Container(
         margin: EdgeInsets.all(5),
-    child:
-    Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: TextFormField(
-        maxLength: 140,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'News Head Line',
-        ),
-      ),
-    )
-    );
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            maxLength: 140,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'News Head Line',
+            ),
+          ),
+        ));
   }
+
   Widget _buildNewsFeed() {
     return Container(
       margin: EdgeInsets.all(5),
       height: maxLines * 24.0,
-      child:
-      Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    child: TextFormField(
-        maxLines: maxLines,
-        maxLength: maxLines * 24,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          hintText: "Enter a message",
-          fillColor: Colors.grey[300],
-          filled: true,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: TextFormField(
+          maxLines: maxLines,
+          maxLength: maxLines * 24,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: "Enter a message",
+            fillColor: Colors.grey[300],
+            filled: true,
+          ),
         ),
-      ),
       ),
     );
   }
 
-  Widget _submitButton(){
+  Widget _submitButton() {
     return Container(
-      child:ElevatedButton(
+      child: ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.resolveWith<double>(
-                  (Set<MaterialState> states) {
-                if (states.contains(MaterialState.pressed))
-                  return 16;
-                return null;
-              }),
+              (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) return 16;
+            return null;
+          }),
         ),
-        onPressed: () { },
+        onPressed: () {},
         child: Text('Submit News Feed'),
-      )
-      ,
+      ),
     );
   }
 
@@ -104,7 +156,8 @@ class NewsPostState extends State<NewsPost>{
     );
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path);
+        // _image = File(pickedFile.path);
+        images.add(File(pickedFile.path));
       });
     }
   }
@@ -118,10 +171,12 @@ class NewsPostState extends State<NewsPost>{
     );
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path);
+        // _image = File(pickedFile.path);
+        images.add(File(pickedFile.path));
       });
     }
   }
+
   void _showPicker(context) {
     showModalBottomSheet(
         context: context,
@@ -149,41 +204,40 @@ class NewsPostState extends State<NewsPost>{
               ),
             ),
           );
-        }
-    );
+        });
   }
-  Widget _imageUpload(){
+
+  Widget _imageUpload() {
     return Container(
-        child:Center(
-          child: GestureDetector(
-            onTap: () {
-              _showPicker(context);
-            },
-            child: ClipRRect(
-              child: _image != null
-                  ? ClipRRect(
-                borderRadius: BorderRadius.circular(0),
-                child: Image.file(
-                  _image,
-                  width: 150,
-                  height: 150,
-                  fit: BoxFit.fitHeight,
-                )
-              )
-                  : Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(50)),
-                width: 100,
-                height: 100,
-                child: Icon(
-                  Icons.camera_alt,
-                  color: Colors.grey[800],
-                ),
-              ),
-            ),
+      child: Center(
+        child: GestureDetector(
+          onTap: () {
+            _showPicker(context);
+          },
+          child: ClipRRect(
+            child: _image != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(0),
+                    child: Image.file(
+                      _image,
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.fitHeight,
+                    ))
+                : Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(50)),
+                    width: 100,
+                    height: 100,
+                    child: Icon(
+                      Icons.camera_alt,
+                      color: Colors.grey[800],
+                    ),
+                  ),
           ),
-    ),
+        ),
+      ),
     );
   }
 }

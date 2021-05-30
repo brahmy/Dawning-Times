@@ -1,5 +1,4 @@
 import 'dart:ffi';
-import 'package:dawning_times/screens/HomeNewsFeed.dart';
 import 'package:dawning_times/screens/NewsFeed.dart';
 import 'package:dawning_times/screens/NewsPost.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +49,7 @@ class HomeMainTabs extends StatelessWidget {
             body: TabBarView(
               children: <Widget>[
                 NewsFeedHome(),
-                HomeNewsFeedList(),
+                CardList(),
                 CardList(),
                 Icon(Icons.directions_bike, size: 350),
                 Icon(Icons.directions_boat, size: 350),
