@@ -60,7 +60,7 @@ class NewsPostState extends State<NewsPost> {
         )
 */
             Expanded(
-              child:Container(
+                child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
               height: MediaQuery.of(context).size.height * 0.13,
               child: ListView.builder(
@@ -69,27 +69,26 @@ class NewsPostState extends State<NewsPost> {
                   itemBuilder: (context, index) {
                     return Container(
                       width: MediaQuery.of(context).size.width * 0.3,
-                        child: Container(
-                          child: Center(
-                            child: Card(
-                            elevation: 2,
-                            color: Colors.grey,
-                            child: Column(
-                              children: <Widget>[
-                                Image.file(
-                                  images[index],
-                                  width: 120,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                )
-                              ],
-                          )),
+                      child: Container(
+                        child: Center(
+                          child: Card(
+                              elevation: 2,
+                              color: Colors.grey,
+                              child: Column(
+                                children: <Widget>[
+                                  Image.file(
+                                    images[index],
+                                    width: 120,
+                                    height: 80,
+                                    fit: BoxFit.cover,
+                                  )
+                                ],
+                              )),
                         ),
                       ),
                     );
                   }),
-            )
-            )
+            ))
           ]),
           _buildNewsFeed(),
           _submitButton(),
