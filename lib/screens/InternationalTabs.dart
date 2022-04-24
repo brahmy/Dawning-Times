@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import '../utils/Globals.dart' as globals;
 
 class CardList extends StatefulWidget {
   const CardList({Key key}) : super(key: key);
@@ -249,6 +250,9 @@ Widget _card(BuildContext context) {
                             ///Add ClickFunction
                             child: new IconButton(
                               icon: Icon(Icons.favorite_outline),
+                              onPressed: (){
+                                changeLikeIcon();
+                              },
                             )),
                         Container(
                           child: new Padding(
@@ -275,6 +279,10 @@ Widget _card(BuildContext context) {
       ),
     ),
   );
+}
+
+void changeLikeIcon() {
+  if(globals.)
 }
 /// card Image sliders
 Widget _cardImageSlider(BuildContext context){
